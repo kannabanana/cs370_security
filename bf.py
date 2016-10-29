@@ -65,8 +65,7 @@ def check_hash(inputarray,x,bloom_filter,num,total):
 
 #function to output to output3/5.txt
 def output(result,text):
-#	print "in output the intersetemption is ", intersection
-	fo = open(text,"w+")		#will create output.txt if it doesn't exist
+	fo = open(text,"a")		#will create output.txt if it doesn't exist
 	fo.write(result+'\n')
 
 
@@ -108,39 +107,47 @@ def main():
 	j = len(inputarray)
 	
 	for x in range(0,j):
+#		print "x is ", x
 		total = [0,0,0]
 		total = check_hash(inputarray,x,bloom_filter3,0,total);
 		total = check_hash(inputarray,x,bloom_filter3,1,total);
 		total = check_hash(inputarray,x,bloom_filter3,2,total);
+#		print "total is ", total		
 
 		count = 0
-		for x in range (0,2):
+		for x in range (0,3):
 			if total[x] == 1:
 				count = count+1
-		print count
-		if count == 3:
-			output("yes",sys.argv[3]);
+#		print "count for x is ", count
+		if count >= 2:
+#			print "maybe"
+			output("maybe",sys.argv[3]);
 		else:
+#			print "no"
 			output("no",sys.argv[3]);
 
 
 	for x in range(0,j):
+#		print "x is ", x
 		total = [0,0,0,0,0]
 		total = check_hash(inputarray,x,bloom_filter3,0,total);
 		total = check_hash(inputarray,x,bloom_filter3,1,total);
 		total = check_hash(inputarray,x,bloom_filter3,2,total);
 		total = check_hash(inputarray,x,bloom_filter3,3,total);
 		total = check_hash(inputarray,x,bloom_filter3,4,total);
-		
+#		print "the total is ", total		
+
 		count = 0
-		for x in range (0,4):
+		for x in range (0,5):
 			if total[x] == 1:
 				count = count+1
-		print count
-		if count == 5:
-			output("yes",sys.argv[3]);
+#		print "count is ", count
+		if count >= 4:
+#			print "maybe"
+			output("yes",sys.argv[4]);
 		else:
-			output("no",sys.argv[3]);
+#			print "no"
+			output("no",sys.argv[4]);
 
 
 		
