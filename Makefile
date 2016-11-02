@@ -1,2 +1,4 @@
 all:
-	python bf.py dictionary.txt sample_input.txt output3.txt output5.txt
+	python bf.py -d dictionary.txt -i sample_input.txt -o output3.txt output5.txt
+clean:
+	rm -rf output3.txt output5.txt

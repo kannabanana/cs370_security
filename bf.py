@@ -47,7 +47,7 @@ def hashfunction(dictionary,x,bloom_filter3,num):
 	salt = ["opljcmriek","slopwnwggrmb","bemasdhoiqplncb","qzcbuufkasnklzm","qmzhadlmppksj"]
 	dictionary[x] = dictionary[x]+salt[num]
 	m = hash(dictionary[x])		#get the hash!
-	m = m%738263			#mod it with 738263 to get something inside 
+	m = m%10000000			#mod it with 10000000 to get something inside 
 	bloom_filter3[m] = 1
 	return bloom_filter3
 
@@ -57,7 +57,7 @@ def check_hash(inputarray,x,bloom_filter,num,total):
 	salt = ["opljcmriek","slopwnwggrmb","bemasdhoiqplncb","qzcbuufkasnklzm","qmzhadlmppksj"]
 	inputarray[x] = inputarray[x]+salt[num]
 	m = hash(inputarray[x])		#get the hash!
-	m = m%738263			#mod it with 738263 to get something inside 
+	m = m%10000000			#mod it with 10000000 to get something inside 
 	if bloom_filter[m] == 1:
 		total[num] = 1
 	return total
@@ -72,15 +72,15 @@ def output(result,text):
 def main():
 
 	#read dictionary.txt
-	i = file_len(sys.argv[1]);
+	i = file_len(sys.argv[2]);
 	dictionary = ["a"]*i;	
-	dictionary = readfromfile(sys.argv[1]);
+	dictionary = readfromfile(sys.argv[2]);
 
 
 	#create bloom filter w/dictionary.txt
-	bloom_filter3 = [0]*738263;		#bloom filter for hash3
-		#created list, initalized zero, of size prime 738263
-	bloom_filter5 = [0]*738263;		#bloom filter for hash5
+	bloom_filter3 = [0]*10000000;		#bloom filter for hash3
+		#created list, initalized zero, of size prime 10000000
+	bloom_filter5 = [0]*10000000;		#bloom filter for hash5
 
 
 	#for loop through dictionary to hash every index into bloom filter3 and 5
@@ -99,9 +99,9 @@ def main():
 		bloom_filter5 = hashfunction(dictionary,x,bloom_filter5,3);
 		bloom_filter5 = hashfunction(dictionary,x,bloom_filter5,4);
 	
-	i = file_len(sys.argv[2]);
+	i = file_len(sys.argv[4]);
 	inputarray = ["a"]*i;	
-	inputarray = readfromfile(sys.argv[2]);
+	inputarray = readfromfile(sys.argv[4]);
 
 	#for loop through dictionary to hash every index into bloom filter3 and 5
 	j = len(inputarray)
@@ -121,20 +121,20 @@ def main():
 #		print "count for x is ", count
 		if count >= 2:
 #			print "maybe"
-			output("maybe",sys.argv[3]);
+			output("maybe",sys.argv[6]);
 		else:
 #			print "no"
-			output("no",sys.argv[3]);
+			output("no",sys.argv[6]);
 
 
 	for x in range(0,j):
 #		print "x is ", x
 		total = [0,0,0,0,0]
-		total = check_hash(inputarray,x,bloom_filter3,0,total);
-		total = check_hash(inputarray,x,bloom_filter3,1,total);
-		total = check_hash(inputarray,x,bloom_filter3,2,total);
-		total = check_hash(inputarray,x,bloom_filter3,3,total);
-		total = check_hash(inputarray,x,bloom_filter3,4,total);
+		total = check_hash(inputarray,x,bloom_filter5,0,total);
+		total = check_hash(inputarray,x,bloom_filter5,1,total);
+		total = check_hash(inputarray,x,bloom_filter5,2,total);
+		total = check_hash(inputarray,x,bloom_filter5,3,total);
+		total = check_hash(inputarray,x,bloom_filter5,4,total);
 #		print "the total is ", total		
 
 		count = 0
@@ -144,10 +144,10 @@ def main():
 #		print "count is ", count
 		if count >= 4:
 #			print "maybe"
-			output("yes",sys.argv[4]);
+			output("maybe",sys.argv[7]);
 		else:
 #			print "no"
-			output("no",sys.argv[4]);
+			output("no",sys.argv[7]);
 
 
 		
