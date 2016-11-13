@@ -1,0 +1,21 @@
+In file included from opensslex.h:1:0,
+                 from opensslex.c:1:
+opensslex.h:26:6: error: expected declaration specifiers or ‘...’ before ‘EVP_MD_CTX_md’
+  int EVP_MD_CTX_size(const EVP_MD *ctx);
+      ^
+opensslex.h:27:6: error: expected declaration specifiers or ‘...’ before ‘EVP_MD_CTX_md’
+  int EVP_MD_CTX_block_size(const EVP_MD *ctx);
+      ^
+opensslex.h:28:6: error: expected declaration specifiers or ‘...’ before ‘EVP_MD_CTX_md’
+  int EVP_MD_CTX_type(const EVP_MD *ctx);
+      ^
+opensslex.h:45:16: error: expected declaration specifiers or ‘...’ before ‘OBJ_nid2sn’
+  const EVP_MD *EVP_get_digestbynid(int type);
+                ^
+opensslex.h:46:16: error: expected declaration specifiers or ‘...’ before ‘OBJ_nid2sn’
+  const EVP_MD *EVP_get_digestbyobj(const ASN1_OBJECT *o);
+                ^
+opensslex.c: In function ‘main’:
+opensslex.c:28:33: warning: incompatible implicit declaration of built-in function ‘strlen’ [enabled by default]
+  EVP_DigestUpdate(mdctx, mess1, strlen(mess1));
+                                 ^
