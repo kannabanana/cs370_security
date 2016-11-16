@@ -1,3 +1,4 @@
 all:	opensslex.c
-	gcc opensslex.c -o opensslex
+	gcc -c opensslex.c
+#	gcc -o opensslex opensslex.c -lssl -lcrypt
 	./opensslex

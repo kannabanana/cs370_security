@@ -1,4 +1,5 @@
 #include <openssl/evp.h>
+#include "string.h"
 
  EVP_MD_CTX *EVP_MD_CTX_new(void);
  int EVP_MD_CTX_reset(EVP_MD_CTX *ctx);
