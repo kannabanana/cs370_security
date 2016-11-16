@@ -23,9 +23,9 @@
  int EVP_MD_block_size(const EVP_MD *md);
 
 const EVP_MD *EVP_MD_CTX_md(const EVP_MD_CTX *ctx);
- int EVP_MD_CTX_size(const EVP_MD *ctx);
- int EVP_MD_CTX_block_size(const EVP_MD *ctx);
- int EVP_MD_CTX_type(const EVP_MD *ctx);
+ int EVP_MD_CTX_size2(const EVP_MD *ctx);
+ int EVP_MD_CTX_block_size2(const EVP_MD *ctx);
+ int EVP_MD_CTX_type2(const EVP_MD *ctx);
  
  const EVP_MD *EVP_md_null(void);
  const EVP_MD *EVP_md2(void);
@@ -42,5 +42,5 @@ const EVP_MD *EVP_MD_CTX_md(const EVP_MD_CTX *ctx);
  const EVP_MD *EVP_sha512(void);
 
  const EVP_MD *EVP_get_digestbyname(const char *name);
- const EVP_MD *EVP_get_digestbynid(int type);
- const EVP_MD *EVP_get_digestbyobj(const ASN1_OBJECT *o);
+ const EVP_MD *EVP_get_digestbynid2(int type);
+ const EVP_MD *EVP_get_digestbyobj2(const ASN1_OBJECT *o);
