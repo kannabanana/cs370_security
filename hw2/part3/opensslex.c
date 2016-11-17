@@ -2,24 +2,25 @@
 #include <stdio.h>
 #include <openssl/evp.h>
 
-int main(int argc,char *argv[])
+void main(int argc,char *argv[])
 {
 
-	EVP_MD_CTX *mdctx;
-	const EVP_MD *md;
+	EVP_MD_CTX *mdctx;					//new one w/the value
+	const EVP_MD *md;					//the md
 
 	char mess1[] = "Test Message\n";
 	char mess2[] = "Hello World\n";
-	unsigned char md_value[EVP_MAX_MD_SIZE];
-	int md_len, i;
+	unsigned char md_value[EVP_MAX_MD_SIZE];		//char of md value
+	int md_len, i;						//len and initialization
 
+	
 	if(!argv[1]) {
 		printf("Usage: mdtest digestname\n");
 		exit(1);
 	}
 
 
-	md = EVP_get_digestbyname(argv[1]);
+	md = EVP_get_digestbyname(argv[1]);			//get the name
 
 
 	if(!md) {
@@ -28,13 +29,13 @@ int main(int argc,char *argv[])
 	}
 
 
-	mdctx = EVP_MD_CTX_new();
-
-	EVP_DigestInit_ex(mdctx, md, NULL);
-	EVP_DigestUpdate(mdctx, mess1, strlen(mess1));
-	EVP_DigestUpdate(mdctx, mess2, strlen(mess2));
+	mdctx = EVP_MD_CTX_create();				//create
+	
+	EVP_DigestInit_ex(mdctx, md, NULL);			//initalize
+	EVP_DigestUpdate(mdctx, mess1, strlen(mess1));		//update str1
+	EVP_DigestUpdate(mdctx, mess2, strlen(mess2));		
 	EVP_DigestFinal_ex(mdctx, md_value, &md_len);
-	EVP_MD_CTX_free(mdctx);
+	EVP_MD_CTX_destroy(mdctx);				//destroy it
 
 	printf("Digest is: ");
 	for (i = 0; i < md_len; i++)

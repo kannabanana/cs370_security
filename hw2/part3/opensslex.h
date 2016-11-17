@@ -1,9 +1,9 @@
 #include <openssl/evp.h>
 #include "string.h"
 
- EVP_MD_CTX *EVP_MD_CTX_new(void);
+ EVP_MD_CTX *EVP_MD_CTX_create(void);
  int EVP_MD_CTX_reset(EVP_MD_CTX *ctx);
- void EVP_MD_CTX_free(EVP_MD_CTX *ctx);
+ void EVP_MD_CTX_destroy(EVP_MD_CTX *ctx);
 
  int EVP_DigestInit_ex(EVP_MD_CTX *ctx, const EVP_MD *type, ENGINE *impl);
  int EVP_DigestUpdate(EVP_MD_CTX *ctx, const void *d, size_t cnt);
