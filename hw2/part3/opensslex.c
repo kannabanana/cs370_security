@@ -78,23 +78,20 @@ void main(int argc,char *argv[])
 	printf("\n");
 
 
-	/*Values that will not be recycled*/
 
 	int count = 0;						//starting 
-	int flip = 0;
+	int flip;
+	flip = 1;						//they're different
 
 	size_t len = 10;					//create random string
 	char * random_string = NULL;
 
-//	while(flip != 1)
-//	{
+	while(flip == 1)
+{
 		random_string = randstring(len);
 		printarray(random_string);
-		random_string = NULL;
-		
 
 
-		/* Values that will be recycled*/	
 		EVP_MD_CTX *mdctx2;					//new one w/the value
 		const EVP_MD *md2;					//the md
 		unsigned char md_value2[EVP_MAX_MD_SIZE];		//char of md value
@@ -138,22 +135,23 @@ void main(int argc,char *argv[])
 			printf("%02x", md_value2[i]);
 		printf("\n");
 
-
-/*
-
-		++count;
-		if (count == 10)
+		flip = 0;
+		for(i = 0;i<6;++i)
 		{
-			flip = 1;
+			if (flip != 1)
+			{
+				if(md_value2[i] != md_value[i])
+				{
+					flip = 1;
+				}
+			}
 		}
+		printf("%d\n",count);
+		++count;
 	}
 
-	if (flip == 1)
-	{	
-		printf ("the count is %d\n",count);
-	}
+	
 
-*/
 	exit(0);
 
 }

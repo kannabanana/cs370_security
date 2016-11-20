@@ -1,18 +1,6 @@
 /*
- ============================================================================
- Name        : encdec.c
- Author      : Manisha Agrawal
- Description  : You are given a plaintext and a ciphertext. Numbers in the
-IV are all zeros (not the ASCII character `0'). The key used to encrypt this
-plaintext is an English word shorter than 16 characters; Since the word has
-less than 16 characters (i.e. 128 bits), space characters (hexadecimal value 0x20)
-are appended to the end of the word to form a key of 128 bits. Your goal is to write
-a program to find out this key.
-Ciphertype :  aes-128-cbc
-
-AES encrypt. do_encrypt is 1 for encryption and 0 for decryption
-
- ============================================================================
+SR Kanna
+CS370 - HW2 - Part V
  */
 
 #include <stdio.h>
@@ -20,11 +8,12 @@ AES encrypt. do_encrypt is 1 for encryption and 0 for decryption
 #include <stdlib.h>
 #include <openssl/evp.h>
 
-#define DICTIONARY "words_dict.txt" //dictionary file
+#define DICTIONARY "words_dict.txt"
 
-char inText[] = "This is a top secret."; //Input
+char inText[] = "This is a top secret.";
 char cipherText[] = "8d20e5056a8d24d0462ce74e4904c1b513e10d1df4a2ef2ad4540fae1ca0aaf9";
 unsigned char iv[16] = { 0 } ;
+
 
 int cipher_hex(unsigned char *buf, int len, FILE *outFile)
 {
@@ -40,11 +29,13 @@ int cipher_hex(unsigned char *buf, int len, FILE *outFile)
 	}
 	fprintf(outFile,"%c",x);
 
-    //If cipher text match return 1
     if(!strcmp(buffer, cipherText))
     	return 1;
 	return 0;
 }
+
+
+
 
 int main()
 {
@@ -88,7 +79,7 @@ int main()
         
 		if(cipher_hex(outbuf, outlen, outFile)) //convert raw cipher to hex value
 		{
-			printf("Key found!! Key : %s\n",key);
+			printf("Key : %s\n",key);
 			break;
 		}
 	}
