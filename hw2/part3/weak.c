@@ -43,6 +43,10 @@ char *randstring(size_t length) {
 void main(int argc,char *argv[])
 {
 
+	time_t t;
+	srand((unsigned) time(&t));
+
+
 	EVP_MD_CTX *mdctx;					//new one w/the value
 	const EVP_MD *md;					//the md
 	int md_len,i;
