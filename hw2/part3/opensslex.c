@@ -140,7 +140,7 @@ void main(int argc,char *argv[])
 		printf("\n");
 
 		flip = 0;
-		for(i = 0;i<6;++i)
+		for(i = 0;i<2;++i)
 		{
 			if (flip != 1)
 			{
